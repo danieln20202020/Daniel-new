@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Saya dengan Pencarian dan Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0; /* Menghapus padding default body */
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navigasi */
+        header.navbar {
+            background-color: #333;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky; /* Membuat navbar tetap di atas saat scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b4ff00; /* Warna aksen dari file Anda */
+        }
+
+
+        /* Kontainer Utama */
+        .main-container {
+            display: flex;
+            margin-top: 20px; /* Memberi jarak dari navbar */
+            padding: 0 5%; /* Menyamakan padding dengan navbar */
+        }
+
+        /* Konten Blog (Artikel) */
+        .blog-content {
+            flex: 3; /* Mengambil 3 bagian dari ruang yang tersedia */
+            padding-right: 20px; /* Jarak antara konten blog dan sidebar */
+        }
+
+        .blog-section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-section-title h2 {
+            font-size: 2.5rem;
+            color: #4a6fa5;
+            margin-bottom: 10px;
+        }
+
+        .blog-section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Membuat satu kolom untuk artikel */
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; /* Menggunakan flexbox untuk tata letak horizontal */
+            flex-direction: column; /* Default untuk mobile */
+        }
+        
+        @media (min-width: 768px) { /* Tata letak berbeda untuk layar lebih besar */
+            .blog-card {
+                flex-direction: row; /* Gambar di kiri, info di kanan */
+            }
+            .blog-card-img {
+                flex: 1; /* Mengambil 1 bagian */
+                max-width: 250px; /* Batasi lebar gambar */
+                height: auto;
+            }
+            .blog-card-info {
+                flex: 2; /* Mengambil 2 bagian */
+                padding: 1.5rem; /* Padding dipindahkan ke sini agar konsisten */
+            }
+        }
+
+
+        .blog-card:hover {
+            transform: translateY(-5px); /* Mengurangi efek hover agar tidak terlalu berlebihan */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .blog-card-img img {
+            width: 100%;
+            height: 200px; /* Tinggi gambar konsisten */
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .blog-card-info h3 {
+            font-size: 1.5rem;
+            margin-top: 0; /* Hapus margin atas default */
+            margin-bottom: 0.5rem;
+            color: #4a6fa5;
+        }
+
+        .blog-card-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .blog-card-info .read-more-btn {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .blog-card-info .read-more-btn:hover {
+            background-color: #3a5a8f;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1; /* Mengambil 1 bagian dari ruang yang tersedia */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content; /* Agar tinggi sidebar menyesuaikan konten */
+        }
+
+        .sidebar-widget {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-widget h4 {
+            font-size: 1.3rem;
+            color: #4a6fa5;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        /* Fitur Pencarian */
+        .search-widget form {
+            display: flex;
+        }
+
+        .search-widget input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .search-widget button {
+            padding: 10px 15px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-widget button:hover {
+            background-color: #3a5a8f;
+        }
+
+        /* Widget Kategori & Arsip */
+        .category-widget ul, .archive-widget ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-widget li, .archive-widget li {
+            margin-bottom: 10px;
+        }
+
+        .category-widget a, .archive-widget a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        .category-widget a:hover, .archive-widget a:hover {
+            color: #4a6fa5;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 40px;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column; /* Konten utama dan sidebar akan bertumpuk */
+            }
+            .blog-content {
+                padding-right: 0;
+                margin-bottom: 30px; /* Jarak antara konten blog dan sidebar saat bertumpuk */
+            }
+            .sidebar {
+                width: 100%; /* Sidebar mengambil lebar penuh */
+            }
+            .navbar .nav-links {
+                display: none; /* Sembunyikan link navigasi di mobile, bisa ditambahkan tombol toggle jika perlu */
+            }
+             .blog-card {
+                flex-direction: column; /* Gambar di atas, info di bawah */
+            }
+            .blog-card-img img {
+                max-width: 100%; /* Gambar mengambil lebar penuh kartu */
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="#">DanielEditor Blog</a>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Beranda</a>
+            <a href="#program">Program</a>
+            <a href="#harga">Harga</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <main class="blog-content">
+            <div class="blog-section-title">
+                <h2>Artikel Terbaru Kami</h2>
+                <p>Tetap terinformasi dengan berita, kiat, dan tutorial terbaru dari DanielEditor.</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" data-title="Menguasai Fotografi Potret dengan Pencahayaan Profesional" data-category="Fotografi">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fotografi Potret">
+                    </div>
+                    <div class="blog-card-info">
+                        <h3>Menguasai Fotografi Potret dengan Pencahayaan Profesional</h3>
+                        <p>Pelajari seni menangkap potret yang memukau dengan teknik pencahayaan dan komposisi profesional. Kiat penting untuk setiap calon fotografer yang ingin meningkatkan kualitas karyanya...</p>
+                        <a href="#" class="read-more-btn">Baca Lebih Lanjut</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-title="Panduan Intensif Desain Grafis untuk Pemula" data-category="Desain Grafis">
+                    <div class="blog-card-img">
+                         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Desain Grafis">
+                    </div>
+                    <div class="blog-card-info">
+                        <h3>Panduan Intensif Desain Grafis untuk Pemula</h3>
+                        <p>Dari logo hingga tata letak, kuasai prinsip-prinsip komunikasi visual dan branding. Langkah pertama Anda menuju dunia desain profesional yang kreatif dan menghasilkan...</p>
+                        <a href="#" class="read-more-btn">Baca Lebih Lanjut</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card" data-title="Tips Editing Foto Cepat di Adobe Lightroom" data-category="Editing Foto">
+                    <div class="blog-card-img">
+                         <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Editing Foto Lightroom">
+                    </div>
+                    <div class="blog-card-info">
+                        <h3>Tips Editing Foto Cepat di Adobe Lightroom</h3>
+                        <p>Optimalkan alur kerja Anda dengan tips dan trik ini untuk mengedit foto lebih cepat dan efisien menggunakan Adobe Lightroom. Cocok untuk fotografer dengan banyak proyek...</p>
+                        <a href="#" class="read-more-btn">Baca Lebih Lanjut</a>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-widget search-widget">
+                <h4><i class="fas fa-search"></i> Cari Artikel</h4>
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Ketik kata kunci...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="sidebar-widget category-widget">
+                <h4><i class="fas fa-tags"></i> Kategori</h4>
+                <ul>
+                    <li><a href="#" data-category="Fotografi">Fotografi (2)</a></li>
+                    <li><a href="#" data-category="Desain Grafis">Desain Grafis (1)</a></li>
+                    <li><a href="#" data-category="Editing Foto">Editing Foto (3)</a></li>
+                    <li><a href="#" data-category="Tips & Trik">Tips & Trik (5)</a></li>
+                    <li><a href="#" data-category="Semua">Lihat Semua</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget archive-widget">
+                <h4><i class="fas fa-archive"></i> Arsip</h4>
+                <ul>
+                    <li><a href="#">Mei 2025</a></li>
+                    <li><a href="#">April 2025</a></li>
+                    <li><a href="#">Maret 2025</a></li>
+                    <li><a href="#">Februari 2025</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget recent-posts-widget">
+                <h4><i class="fas fa-newspaper"></i> Artikel Terbaru</h4>
+                <ul>
+                    <li><a href="#">Menguasai Fotografi Potret</a></li>
+                    <li><a href="#">Panduan Desain Grafis</a></li>
+                    <li><a href="#">Tips Editing Lightroom</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DanielEditor Blog. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const blogCards = document.querySelectorAll('.blog-card');
+            const categoryLinks = document.querySelectorAll('.category-widget a');
+
+            // Fungsi untuk filter artikel berdasarkan pencarian dan kategori
+            function filterArticles() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const activeCategory = document.querySelector('.category-widget a.active-category')?.dataset.category;
+
+                blogCards.forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    const category = card.dataset.category;
+                    
+                    const matchesSearch = title.includes(searchTerm);
+                    const matchesCategory = !activeCategory || activeCategory === 'Semua' || activeCategory === category;
+
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = ''; // Tampilkan kartu
+                    } else {
+                        card.style.display = 'none'; // Sembunyikan kartu
+                    }
+                });
+            }
+
+            // Event listener untuk form pencarian
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault(); // Mencegah form mengirim data (reload halaman)
+                filterArticles();
+            });
+            
+            // Event listener untuk input pencarian (live search)
+            searchInput.addEventListener('input', filterArticles);
+
+            // Event listener untuk link kategori
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Hapus kelas aktif dari link kategori lain
+                    categoryLinks.forEach(l => l.classList.remove('active-category'));
+                    // Tambahkan kelas aktif ke link yang diklik
+                    this.classList.add('active-category');
+                    filterArticles();
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanielEditor </title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #ff6b6b;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --gray-color: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* ===== HEADER ===== */
+       header.navbar {
+            background-color: #333;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky; /* Membuat navbar tetap di atas saat scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b4ff00; /* Warna aksen dari file Anda */
+        }
+        
+        .text-box {
+    width: 80%; /* Lebar kotak biru */
+    max-width: 800px; /* Batas lebar maksimum */
+    min-height: 250px; /* Tinggi minimum kotak biru */
+    background-color: rgba(0, 0, 0, 0.7);/* Latar belakang kotak teks */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Agar garis teks terpisah */
+    margin-top: 20px;
+}
+
+.text-line {
+    width: 90%; /* Lebar garis merah teks */
+    height: 15px; /* Tinggi garis merah teks */
+    color: white;
+/* Warna garis merah teks */
+    margin: 10px 0; /* Jarak antar garis teks */
+    align-self: center; /* Pusatkan garis teks */
+}
+
+.image-container {
+    display: flex;
+    gap: 20px; /* Jarak antar kotak gambar */
+    flex-wrap: wrap; /* Agar gambar bisa wrap ke baris baru jika ruang tidak cukup */
+    justify-content: center;
+}
+
+.image-placeholder {
+    width: 400px; /* Lebar kotak gambar */
+    height: 400px; /* Tinggi kotak gambar */
+    border: 3.5px solid; /* Garis merah di sekitar kotak gambar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em; /* Ukuran font untuk placeholder teks */
+    color: #fffefe;
+    box-sizing: border-box;
+}
+
+/* Responsif dasar */
+@media (max-width: 768px) {
+    .text-box {
+        width: 95%;
+    }
+
+    .image-placeholder {
+        width: 120px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 50px;
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .text-line {
+        height: 10px;
+    }
+
+    .image-placeholder {
+        width: 100px;
+        height: 70px;
+        font-size: 0.7em;
+    }
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2016/04/20/07/30/camera-1340552_1280.jpg') no-repeat center center/cover;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+    </style>
+</head>
+<body>
+     <header class="navbar">
+        <div class="logo">
+            <a href="blog.html">DanielEditor </a>
+        </div>
+        <nav class="nav-links">
+            <a href="../blog.html">Home</a>
+            <a href="../program.html">Program</a>
+            <a href="../price.html">Harga</a>
+            <a href="../about.html">Tentang</a>
+            <a href="../contact.html">Kontak</a>
+        </nav>
+        </header>
+        <main class="main-content">
+        <div class="text-box">
+            <p class="text-line">✨ Program Belajar Advanced Photo Editing
+
+</p>
+            <p class="text-line">"Naik Level: Ubah Foto Biasa Jadi Karya Luar Biasa"
+</p>
+            <p class="text-line">Sudah menguasai dasar editing foto dan ingin melangkah lebih jauh?
+Program ini dirancang khusus untuk Anda yang ingin memperdalam teknik retouching, manipulasi foto, hingga color grading tingkat lanjut, dengan pendekatan profesional dan kreatif.
+
+</p>
+        <p class="text-line">
+        <p class="text-line">
+🖌 Materi yang Akan Dipelajari:
+
+</p>
+            <p class="text-line">1.Advanced retouching (kulit, objek, latar belakang)
+
+</p>
+            <p class="text-line">2.High-end color correction & color grading
+</p>
+            <p class="text-line">3.Teknik manipulasi foto (compositing, masking kompleks)
+
+</p>
+            <p class="text-line">4.Editing foto untuk keperluan komersial, fashion, dan digital art
+
+</p>
+            <p class="text-line">5.Workflow profesional & efisiensi kerja dengan software seperti Adobe Photoshop, Lightroom, dan lainnya
+
+</p>
+            <p class="text-line"></p>
+            <p class="text-line">
+🧑‍🏫 Cocok untuk:
+</p>
+            <p class="text-line">1.Fotografer dan editor yang ingin naik kelas
+
+</p>
+            <p class="text-line">2. Desainer visual & digital artist
+</p>
+            <p class="text-line">✨ Jadikan setiap potret lebih dari sekadar gambar. Wujudkan cerita dalam setiap jepretan.
+</p>
+            <p class="text-line"></p>
+            <p class="text-line"></p>
+        </div>
+        </main>
+        <div class="image-container">
+            <div class="image-placeholder"><img src="../aset/edit 1.jpg" class="image-placeholder"></div>
+            <div class="image-placeholder"><img src="../aset/edit 2.jpg" class="image-placeholder"></div>
+            <div class="image-placeholder"><img src="../aset/edit 3.jpg" class="image-placeholder"></div>
+            <div class="image-placeholder"><img src="../aset/edit 4.jpg" class="image-placeholder"></div>
+        </div>
+
+
+    
+</body>
+</html>

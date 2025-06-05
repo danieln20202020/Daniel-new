@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanielEditor</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #ff6b6b;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --gray-color: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      background: url('https://cdn.pixabay.com/photo/2016/04/20/07/30/camera-1340552_1280.jpg') no-repeat center center/cover;
+      height: 100vh;
+    }
+        
+        /* ===== HEADER ===== */
+      header.navbar {
+            background-color: #333;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky; /* Membuat navbar tetap di atas saat scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b4ff00; /* Warna aksen dari file Anda */
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            margin-top: 80px;
+            background: linear-gradient(rgba(74, 111, 165, 0.8), rgba(74, 111, 165, 0.8)), 
+                        url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }                                                                                                   
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e05a5a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* ===== PRICING SECTION ===== */
+        .pricing {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-header {
+            padding: 1.5rem;
+            text-align: center;
+            background-color: var(--light-color);
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            
+        }
+        
+        .standard .pricing-price {
+            color: var(--primary-color);
+        }
+        
+        .advanced .pricing-price {
+            color: var(--accent-color);
+        }
+        
+        .professional .pricing-price {
+            color: var(--secondary-color);
+        }
+        
+        .pricing-period {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+        
+        .pricing-features {
+            padding: 1.5rem;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .pricing-button {
+            text-align: center;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .professional .pricing-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .professional .pricing-title {
+            color: white;
+        }
+        
+        .professional .pricing-period {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 0 0 5px 5px;
+        }
+        
+       
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 4rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+             .navbar .nav-links {
+                display: none; /* Sembunyikan link navigasi di mobile, bisa ditambahkan tombol toggle jika perlu */
+            }
+        }
+    </style>
+ <header class="navbar">
+        <div class="logo">
+            <a href="blog.html">DanielEditor Blog</a>
+        </div>
+        <nav class="nav-links">
+            <a href="blog.html">Home</a>
+            <a href="program.html">Program</a>
+            <a href="price.html">Harga</a>
+            <a href="about.html">Tentang</a>
+            <a href="contact.html">Kontak</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Professional Photography & Design Services</h1>
+            <p>Choose the perfect package for your needs and elevate your visual content with our expert services</p>
+            <a href="#pricing" class="btn">View Packages</a>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>Our Service Packages</h2>
+            <p>Select the package that best fits your needs and budget</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Standard Package -->
+            <div class="pricing-card standard">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Standard</h3>
+                    <div class="pricing-price">$200</div>
+                    <div class="pricing-period">per project</div>
+                </div>
+                <div class="pricing-features" style="color: black;">
+                    <ul>
+                        <li>5 high-resolution edited photos</li>
+                        <li>Basic retouching</li>
+                        <li>2 revision rounds</li>
+                        <li>3-day delivery</li>
+                        <li>Web-optimized files</li>
+                        <li>Social media formats</li>
+                    </ul>
+                </div>
+                <div class="pricing-button">
+                    <a href="https://forms.gle/MK2XQ8XXMvSFGysX7" class="btn">Get Started</a>
+                </div>
+            </div>
+            
+            <!-- Advanced Package -->
+            <div class="pricing-card advanced">
+                <div class="pricing-header">
+                    <div class="recommended-badge">Most Popular</div>
+                    <h3 class="pricing-title">Advanced</h3>
+                    <div class="pricing-price" style="color:rgb(0, 0, 0);">$400</div>
+                    <div class="pricing-period">per project</div>
+                </div>
+                <div class="pricing-features" style="color: black;">
+                    <ul>
+                        <li>15 high-resolution edited photos</li>
+                        <li>Advanced retouching</li>
+                        <li>5 revision rounds</li>
+                        <li>48-hour delivery</li>
+                        <li>Print + web files</li>
+                        <li>Social media kit</li>
+                        <li>Basic graphic design</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+                <div class="pricing-button">
+                    <a href="https://forms.gle/MK2XQ8XXMvSFGysX7" class="btn">Get Started</a>
+                </div>
+            </div>
+            
+            <!-- Professional Package -->
+            <div class="pricing-card professional">
+                <div class="pricing-header">
+                    <h3 class="pricing-title">Professional</h3>
+                    <div class="pricing-price">$600</div>
+                    <div class="pricing-period">per project</div>
+                </div>
+                <div class="pricing-features" style="color: black;">
+                    <ul>
+                        <li>30+ high-resolution edited photos</li>
+                        <li>Premium retouching</li>
+                        <li>Unlimited revisions</li>
+                        <li>24-hour delivery</li>
+                        <li>All file formats</li>
+                        <li>Complete branding kit</li>
+                        <li>Custom graphic design</li>
+                        <li>Dedicated account manager</li>
+                        <li>Commercial usage rights</li>
+                        <li>Video content (1 min)</li>
+                    </ul>
+                </div>
+                <div class="pricing-button">
+                    <a href="https://forms.gle/MK2XQ8XXMvSFGysX7" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h3>Ready to Transform Your Visual Content?</h3>
+        <p>Contact us for custom packages and special requests</p>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        
+        <p>&copy; 2023 PhotoDesign Pro. All rights reserved.</p>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanielEditor</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --primary-color: #4a6fa5;
+            --instagram-color: #E1306C;
+            --tiktok-color: #000000;
+            --whatsapp-color: #25D366;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --gray-color: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2016/04/20/07/30/camera-1340552_1280.jpg') no-repeat center center/cover;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* ===== HEADER ===== */
+      header.navbar {
+            background-color: #333;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky; /* Membuat navbar tetap di atas saat scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b4ff00; /* Warna aksen dari file Anda */
+        }
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .instagram {
+            color: var(--instagram-color);
+        }
+        
+        .tiktok {
+            color: var(--tiktok-color);
+        }
+        
+        .whatsapp {
+            color: var(--whatsapp-color);
+        }
+        
+        .social-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .social-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .instagram-link {
+            background-color: var(--instagram-color);
+        }
+        
+        .tiktok-link {
+            background-color: var(--tiktok-color);
+        }
+        
+        .whatsapp-link {
+            background-color: var(--whatsapp-color);
+        }
+        
+        .social-link:hover {
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .social-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+             .navbar .nav-links {
+                display: none; /* Sembunyikan link navigasi di mobile, bisa ditambahkan tombol toggle jika perlu */
+            }
+        }
+    </style>
+ <header class="navbar">
+        <div class="logo">
+            <a href="blog.html">DanielEditor Blog</a>
+        </div>
+        <nav class="nav-links">
+            <a href="blog.html">Home</a>
+            <a href="program.html">Program</a>
+            <a href="price.html">Harga</a>
+            <a href="about.html">Tentang</a>
+            <a href="contact.html">Kontak</a>
+        </nav>
+    </header>
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Connect with us through your preferred platform. We're here to answer your questions and discuss your photography and design needs.</p>
+        </div>
+        
+        <div class="social-container">
+            <!-- Instagram Card -->
+            <div class="social-card">
+                <div class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <h3>Instagram</h3>
+                <p>Follow us for daily updates, portfolio showcases, and behind-the-scenes content.</p>
+                <a href="https://www.instagram.com/daniel_h_nainggolan?igsh=d24wemtmZHk2cnF5&utm_source=qr" class="social-link instagram-link" target="_blank">
+                    Follow Us
+                </a>
+            </div>
+            
+            <!-- TikTok Card -->
+            <div class="social-card">
+                <div class="social-icon tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <h3>TikTok</h3>
+                <p>Watch our creative process, quick tips, and fun photography challenges.</p>
+                <a href="https://www.tiktok.com/@danielnainggolannnn?_t=ZS-8w7sB2OTC7E&_r=1" class="social-link tiktok-link" target="_blank">
+                    Follow Us
+                </a>
+            </div>
+            
+            <!-- WhatsApp Card -->
+            <div class="social-card">
+                <div class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Message us directly for quick inquiries, bookings, and customer support.</p>
+                <a href="https://wa.me/qr/TLO3F46GSYG7E1" class="social-link whatsapp-link" target="_blank">
+                    Chat Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 PhotoDesign Pro. All rights reserved.</p>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

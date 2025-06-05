@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanielEditor</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #ff6b6b;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --gray-color: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      background: url('https://cdn.pixabay.com/photo/2016/04/20/07/30/camera-1340552_1280.jpg') no-repeat center center/cover;
+      height: 100vh;
+    }
+        
+        /* ===== HEADER ===== */
+       header.navbar {
+            background-color: #333;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky; /* Membuat navbar tetap di atas saat scroll */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b4ff00; /* Warna aksen dari file Anda */
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            margin-top: 80px;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gray-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a5a8f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* ===== PROGRAMS SECTION ===== */
+        .programs {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 25px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            margin-top: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 10px;
+        }
+        
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .program-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .program-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .program-card:hover .program-img img {
+            transform: scale(1.1);
+        }
+        
+        .program-info {
+            padding: 1.5rem;
+        }
+        
+        .program-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .program-info p {
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+        }
+        
+        .program-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            background-color: #e9f0fa;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+             .navbar .nav-links {
+                display: none; /* Sembunyikan link navigasi di mobile, bisa ditambahkan tombol toggle jika perlu */
+            }
+        }
+    </style>
+ <header class="navbar">
+        <div class="logo">
+            <a href="blog.html">DanielEditor Blog</a>
+        </div>
+        <nav class="nav-links">
+            <a href="blog.html">Home</a>
+            <a href="program.html">Program</a>
+            <a href="price.html">Harga</a>
+            <a href="about.html">Tentang</a>
+            <a href="contact.html">Kontak</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Transform Your Creative Vision</h1>
+            <p>Professional photography and design programs to elevate your skills and build an impressive portfolio.</p>
+            <a href="#programs" class="btn">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="section-title">
+            <h2>My Programs</h2>
+            <p>Three specialized programs designed to help you master different aspects of photography and design</p>
+        </div>
+        
+        <div class="programs-grid">
+            <!-- Program 1 -->
+            <div class="program-card">
+                <div class="program-img">
+                    <img src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Portrait Photography">
+                </div>
+                <div class="program-info">
+                    <h3>Portrait Photography Mastery</h3>
+                    <p>Pelajari seni menangkap potret yang menakjubkan dengan pencahayaan dan komposisi profesional</p>
+                    <div class="program-tags">
+                        <span class="tag">Lighting</span>
+                        <span class="tag">Posing</span>
+                        <span class="tag">Editing</span>
+                    </div>
+                    <a href="Learn More Program/Learn More 1.html" class="btn">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Program 2 -->
+            <div class="program-card">
+                <div class="program-img">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphic Design">
+                </div>
+                <div class="program-info">
+                    <h3>Graphic Design Intensive</h3>
+                    <p>From logos to layouts, master the principles of visual communication and branding.</p>
+                    <div class="program-tags">
+                        <span class="tag">Typography</span>
+                        <span class="tag">Branding</span>
+                        <span class="tag">Adobe CC</span>
+                    </div>
+                    <a href="Learn More Program/Learn More 2.html" class="btn">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Program 3 -->
+            <div class="program-card">
+                <div class="program-img">
+                    <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photo Editing">
+                </div>
+                <div class="program-info">
+                    <h3>Advanced Photo Editing</h3>
+                    <p>Transform your images with professional retouching and color grading techniques.</p>
+                    <div class="program-tags">
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">Lightroom</span>
+                        <span class="tag">Retouching</span>
+                    </div>
+                    <a href="Learn More Program/Learn More 3.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Font Awesome for icons (add this before closing body tag) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
